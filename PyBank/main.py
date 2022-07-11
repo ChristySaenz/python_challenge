@@ -3,32 +3,37 @@ import csv
 
 budget_csv = os.path.join("Resources", "budget_data.csv")
 
-#Lists to store data
-
-Profit_Loss_Value = []
-
+PL_Values = []
+Date = []
+PL_Total =[]
+# Date formatted as MonthAbv - Year (last 2 numbers)
 # Open and read csv
-with open(budget_csv) as csv_file:
-    csvreader =csv.reader(csv_file, delimiter=",")
-
+with open(budget_csv) as csvfile:
+    csvreader =csv.reader(csvfile, delimiter=",")
+    print(csvreader)
     # Read the header row first
-    csv_header = next(csv_file)
-    #print(f"Header: {csv_header}")
-    # Date formatted as MonthAbv - Year (last 2 numbers)
-    Date = [row[0] for row in csvreader]
-    Profit_Loss_Value = [row[1] for row in csvreader]
-    #for row in csvreader:
-        #Date.append(row[0])
-        #Profit_Loss_Value.append(row[1])
+    csv_header = next(csvreader) 
+    print(f"CSV Header: {csv_header}")
+#Calculate Profit/Losses total  
+    PL_Total = 0
+    for col in csvreader:
+        #print(col[1])
+        PL_Total += int(col[1])
+    print(PL_Total)
+
+        
+        
+
+    
+  
 
 #Identify the total # of Months
-total_months =  str(len(Date))  
-print("Total Months: " + total_months)
+#total_months =  str(len(Date))  
+#print("Total Months: " + total_months)
               
 #Identify the net_total of Profit/Losses
 
-#def pl_average(Profit_Loss_Value)
-        #Profit_Loss_Value =int()
+    
 #Find changes in Profit/Losses over the whole period
 
 # Average Profit/Losses Changes
