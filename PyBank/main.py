@@ -3,8 +3,9 @@ import csv
 
 budget_csv = os.path.join("Resources", "budget_data.csv")
 
-PL_Values = []
+PL_Value = []
 PL_Total =[]
+Month_Diff = []
 # Date formatted as MonthAbv - Year (last 2 numbers)
 # Open and read csv
 Months = 0
@@ -17,22 +18,38 @@ with open(budget_csv) as csvfile:
     print(f"CSV Header: {csv_header}") 
 #Calculate Profit/Losses total  
     for row in csvreader:
-        PL_Total += int(row[1])
+        PL_Value.append(int(row[1]))
+#Identify the net_total of Profit/Losses
+        PL_Total= sum(PL_Value)
+    
+#Identify the total # of Months
         Months += 1
+    Dollar_total = "${:,.2f}".format(PL_Total)
+#https://stackoverflow.com/questions/46965192/python-how-can-i-find-difference-between-two-rows-of-same-column-using-loop-in
+       
+    print("Financial Analysis")
+    print("------------------------------")
     print (f"Total Months: {Months}")    
-    #for col in csvreader:
-    print(f"Total: {PL_Total}")
+    print(f"Total: {Dollar_total}")
+# Setting row count as i by defining the length of the column at each iteration
+    for i in range(1, len(PL_Value)):
+#Subtractracting current row from previous row value
+        Month_Diff.append(PL_Value[i]-PL_Value[i-1]) 
+#Finding Average change by taking the sum of differences divided by number of months minus due to first month assumed as "no change"
+        Avg_Change = "${:,.2f}".format(sum(Month_Diff)/(Months-1))
+    #print (Month_Diff)
+    print(f"Average Change: {Avg_Change}")
    
         
     
 
     
 
-#Identify the total # of Months
+
        
 
               
-#Identify the net_total of Profit/Losses
+
 
     
 #Find changes in Profit/Losses over the whole period
@@ -47,8 +64,7 @@ with open(budget_csv) as csvfile:
 #maybe def print_analysis?
 #def print_analysis()
 
-   # print("Financial Analysis")
-   # print("------------------------------")
+   
 
 
 
