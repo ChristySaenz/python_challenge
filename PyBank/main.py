@@ -32,8 +32,8 @@ with open(budget_csv) as csvfile:
 
     Dollar_total = "${:,.2f}".format(PL_Total)
 
-    Fin_Analysis.append("Financial Analysis")
-    Fin_Analysis.append("------------------------------")
+    Fin_Analysis.append(f"Financial Analysis")
+    Fin_Analysis.append(f"------------------------------")
     Fin_Analysis.append(f"Total Months: {Months}")    
     Fin_Analysis.append(f"Total: {Dollar_total}")
 # Setting row count as i by defining the length of the column at each iteration
