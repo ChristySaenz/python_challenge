@@ -80,9 +80,15 @@ for p in Fin_Analysis:
 
 
 #Export results to text file
-# Fin_Analysis = os.path.join("Final_Analysis.csv")
+Final_Analysis = os.path.join("analysis","Final_Analysis.txt")  
+#https://stackoverflow.com/questions/7138686/how-to-write-a-list-to-a-file-with-newlines-in-python3
+with open(Final_Analysis, mode ="wt") as f:
+    for p in Fin_Analysis:
+        f.write(p)
+        f.write('\n')
 
-# with open(Fin_Analysis, "w") as f:
+    
+       
 
 
     
