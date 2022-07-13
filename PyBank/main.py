@@ -33,40 +33,41 @@ with open(budget_csv) as csvfile:
     print(f"Total: {Dollar_total}")
 # Setting row count as i by defining the length of the column at each iteration
     for i in range(1, len(PL_Value)):
-#Subtractracting current row from previous row value
+#Find changes in Profit/Losses over the whole period
+# #Subtractracting current row from previous row value
         Month_Diff.append(PL_Value[i]-PL_Value[i-1]) 
-#Finding Average change by taking the sum of differences divided by number of months minus due to first month assumed as "no change"
+# Average Profit/Losses Changes
+# #Finding Average change by taking the sum of differences divided by number of months minus due to first month assumed as "no change"
         Avg_Change = "${:,.2f}".format(sum(Month_Diff)/(Months-1))
     #print (Month_Diff)
     print(f"Average Change: {Avg_Change}")
    
-        
-    
-
-    
-
-
-       
-
-              
-
-
-    
-#Find changes in Profit/Losses over the whole period
-
-# Average Profit/Losses Changes
-
 #Identify the greatest increase (Date and amount)
+#https://www.delftstack.com/howto/python/python-max-value-in-list/
+# pos_pl_value = []
+# neg_pl_value = []
+# for x in PL_Value:
+#     if (x >= 0):
+#         pos_pl_value.append(x)
+#     else:
+#         neg_pl_value.append(x)
+#     print(max(pos_pl_value))
+#     print(max(neg_pl_value))
 
+max_diff = None
+min_diff = None
+for value in Month_Diff: 
+    if(max_diff is None or value > max_diff):
+        max_diff = value
+        max_diff_dol = "${:,.2f}".format(max_diff)
+    if(min_diff is None or value < min_diff): 
+        min_diff = value
+        min_diff_dol = "${:,.2f}".format(min_diff)
+print(f"Greatest increase in Profits: {max_diff_dol}")
+print(f"Greatest decrease in Profits: {min_diff_dol}")
 #Identify the greatest decrease (Date and amount)
 
 #Set up print table
-#maybe def print_analysis?
-#def print_analysis()
-
-   
-
-
 
 # Export results to text file
 
