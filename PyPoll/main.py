@@ -42,13 +42,17 @@ per_votes_CCS = "{0:.3f}%".format((CCS_Votes/total_votes) * 100)
 per_votes_DDG = "{0:.3f}%".format((DDG_Votes/total_votes) * 100)
 per_votes_RAD = "{0:.3f}%".format((RAD_Votes/total_votes) * 100)
 # The total number of votes each candidate won
+election_results.append("-------------------------")
 election_results.append(f"Charles Casper Stockham: {per_votes_CCS} ({CCS_Votes})")
 election_results.append(f"Diana DeGette: {per_votes_DDG} ({DDG_Votes})")
 election_results.append(f"Raymon Anthony Doane: {per_votes_RAD} ({RAD_Votes})")
+election_results.append("-------------------------")
 # The winner of the election based on popular vote.
 # per_votes = [per_votes_CCS, per_votes_DDG, per_votes_RAD]
 # print(per_votes)
 #Winner = None
+election_results.append("Winner: ")
+election_results.append("-------------------------")
 
 for p in election_results:
     print(p)
