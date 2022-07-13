@@ -1,6 +1,7 @@
 import os
 import csv
 
+
 elec_csv = os.path.join("Resources", "election_data.csv")
 Voters = []
 County = []
@@ -48,18 +49,39 @@ election_results.append(f"Diana DeGette: {per_votes_DDG} ({DDG_Votes})")
 election_results.append(f"Raymon Anthony Doane: {per_votes_RAD} ({RAD_Votes})")
 election_results.append("-------------------------")
 # The winner of the election based on popular vote.
-# per_votes = [per_votes_CCS, per_votes_DDG, per_votes_RAD]
-# print(per_votes)
-#Winner = None
-election_results.append("Winner: ")
+
+# per_votes = [CCS_Votes, DDG_Votes, RAD_Votes]
+# Winner = None
+# w = 0
+# for p in per_votes:
+#     if (w == 0 or p > Winner):
+#        w = p
+#https://www.codegrepper.com/code-examples/python/how+to+find+most+repeated+word+in+a+string+in+python
+# from collections import counter
+# name_count = Counter(Canidate)
+# winner_name = Counter.most_common(4)
+# print(winner_name)
+
+#https://www.geeksforgeeks.org/python-find-most-frequent-element-in-a-list/
+# Program to find most frequent
+# element in a list
+ 
+def winner_name(List):
+    return max(set(List), key = List.count)
+List = Canidate
+winner=(winner_name(List))
+  
+
+
+election_results.append(f"Winner: {winner} ")
 election_results.append("-------------------------")
 
 for p in election_results:
     print(p)
 
-#Export results to text file
+# #Export results to text file
 fin_elec_results = os.path.join("analysis","Final_Results.txt")  
-#https://stackoverflow.com/questions/7138686/how-to-write-a-list-to-a-file-with-newlines-in-python3
+# #https://stackoverflow.com/questions/7138686/how-to-write-a-list-to-a-file-with-newlines-in-python3
 with open(fin_elec_results, mode ="wt") as f:
     for p in election_results:
         f.write(p)
