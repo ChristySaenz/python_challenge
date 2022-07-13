@@ -6,6 +6,7 @@ budget_csv = os.path.join("Resources", "budget_data.csv")
 PL_Value = []
 PL_Total =[]
 Month_Diff = []
+Month = []
 # Date formatted as MonthAbv - Year (last 2 numbers)
 # Open and read csv
 Months = 0
@@ -23,7 +24,9 @@ with open(budget_csv) as csvfile:
         PL_Total= sum(PL_Value)
     
 #Identify the total # of Months
-        Months += 1
+        Month.append(row[0])
+        Months = len(Month)
+        #Months += 1
     Dollar_total = "${:,.2f}".format(PL_Total)
 #https://stackoverflow.com/questions/46965192/python-how-can-i-find-difference-between-two-rows-of-same-column-using-loop-in
        
@@ -39,7 +42,7 @@ with open(budget_csv) as csvfile:
 # Average Profit/Losses Changes
 # #Finding Average change by taking the sum of differences divided by number of months minus due to first month assumed as "no change"
         Avg_Change = "${:,.2f}".format(sum(Month_Diff)/(Months-1))
-    #print (Month_Diff)
+    #print (f"{i} : {Month_Diff}")
     print(f"Average Change: {Avg_Change}")
    
 #Identify the greatest increase (Date and amount)
@@ -53,7 +56,7 @@ with open(budget_csv) as csvfile:
 #         neg_pl_value.append(x)
 #     print(max(pos_pl_value))
 #     print(max(neg_pl_value))
-
+#Identify the greatest decrease (Date and amount)
 max_diff = None
 min_diff = None
 for value in Month_Diff: 
@@ -65,7 +68,6 @@ for value in Month_Diff:
         min_diff_dol = "${:,.2f}".format(min_diff)
 print(f"Greatest increase in Profits: {max_diff_dol}")
 print(f"Greatest decrease in Profits: {min_diff_dol}")
-#Identify the greatest decrease (Date and amount)
 
 #Set up print table
 
