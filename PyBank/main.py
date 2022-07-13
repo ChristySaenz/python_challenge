@@ -7,6 +7,7 @@ PL_Value = []
 PL_Total =[]
 Month_Diff = []
 Month = []
+Fin_Analysis = []
 # Date formatted as MonthAbv - Year (last 2 numbers)
 # Open and read csv
 Months = 0
@@ -31,10 +32,10 @@ with open(budget_csv) as csvfile:
 
     Dollar_total = "${:,.2f}".format(PL_Total)
 
-    print("Financial Analysis")
-    print("------------------------------")
-    print (f"Total Months: {Months}")    
-    print(f"Total: {Dollar_total}")
+    Fin_Analysis.append("Financial Analysis")
+    Fin_Analysis.append("------------------------------")
+    Fin_Analysis.append(f"Total Months: {Months}")    
+    Fin_Analysis.append(f"Total: {Dollar_total}")
 # Setting row count as i by defining the length of the column at each iteration
     for i in range(1, len(PL_Value)):
 #Find changes in Profit/Losses over the whole period
@@ -44,9 +45,9 @@ with open(budget_csv) as csvfile:
 # #Finding Average change by taking the sum of differences divided by number of months minus due to first month assumed as "no change"
         Avg_Change = "${:,.2f}".format(sum(Month_Diff)/(Months-1))
     #print (f"{i} : {Month_Diff}")
-    print(f"Average Change: {Avg_Change}")
+    Fin_Analysis.append(f"Average Change: {Avg_Change}")
    
-#Identify the greatest increase (Date and amount)
+
 #https://www.delftstack.com/howto/python/python-max-value-in-list/
 # pos_pl_value = []
 # neg_pl_value = []
@@ -57,24 +58,34 @@ with open(budget_csv) as csvfile:
 #         neg_pl_value.append(x)
 #     print(max(pos_pl_value))
 #     print(max(neg_pl_value))
+#Identify the greatest increase (Date and amount)
 #Identify the greatest decrease (Date and amount)
+# Calculated max and min then idetified value for Month (row [0]) + 1 since the difference needs to start one row down from the first row.
 max_diff = None
 min_diff = None
 for value in Month_Diff: 
     if(max_diff is None or value > max_diff):
         max_diff = value
         max_diff_dol = "${:,.2f}".format(max_diff)
-        Max_diff_month = str(Month[Month_Diff.index(max_diff)])
+        Max_diff_month = str(Month[Month_Diff.index(max_diff) + 1])
     if(min_diff is None or value < min_diff): 
         min_diff = value
         min_diff_dol = "${:,.2f}".format(min_diff)
         min_diff_month = str(Month[Month_Diff.index(min_diff) + 1])
-print(f"Greatest increase in Profits: {Max_diff_month} ({max_diff_dol})")
-print(f"Greatest decrease in Profits: {min_diff_month} ({min_diff_dol})")
+Fin_Analysis.append(f"Greatest increase in Profits: {Max_diff_month} ({max_diff_dol})")
+Fin_Analysis.append(f"Greatest decrease in Profits: {min_diff_month} ({min_diff_dol})")
+#https://www.w3resource.com/python-exercises/list/python-data-type-list-exercise-168.php
+for p in Fin_Analysis:
+    print(p)
 
-#Set up print table
 
-# Export results to text file
+#Export results to text file
+# Fin_Analysis = os.path.join("Final_Analysis.csv")
+
+# with open(Fin_Analysis, "w") as f:
+
+
+    
 
 
 
