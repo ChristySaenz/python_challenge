@@ -16,8 +16,10 @@ with open(budget_csv) as csvfile:
     #print(csvreader)
     # Read the header row first
     csv_header = next(csvreader) 
-    print(f"CSV Header: {csv_header}") 
+    #print(f"CSV Header: {csv_header}") 
 #Calculate Profit/Losses total  
+#Used this stackoverflow thread to adjust code to work for find inc/dec instructions
+#https://stackoverflow.com/questions/46965192/python-how-can-i-find-difference-between-two-rows-of-same-column-using-loop-in
     for row in csvreader:
         PL_Value.append(int(row[1]))
 #Identify the net_total of Profit/Losses
@@ -26,10 +28,9 @@ with open(budget_csv) as csvfile:
 #Identify the total # of Months
         Month.append(row[0])
         Months = len(Month)
-        #Months += 1
+
     Dollar_total = "${:,.2f}".format(PL_Total)
-#https://stackoverflow.com/questions/46965192/python-how-can-i-find-difference-between-two-rows-of-same-column-using-loop-in
-       
+
     print("Financial Analysis")
     print("------------------------------")
     print (f"Total Months: {Months}")    
@@ -63,11 +64,13 @@ for value in Month_Diff:
     if(max_diff is None or value > max_diff):
         max_diff = value
         max_diff_dol = "${:,.2f}".format(max_diff)
+        Max_diff_month = str(Month[Month_Diff.index(max_diff)])
     if(min_diff is None or value < min_diff): 
         min_diff = value
         min_diff_dol = "${:,.2f}".format(min_diff)
-print(f"Greatest increase in Profits: {max_diff_dol}")
-print(f"Greatest decrease in Profits: {min_diff_dol}")
+        min_diff_month = str(Month[Month_Diff.index(min_diff) + 1])
+print(f"Greatest increase in Profits: {Max_diff_month} ({max_diff_dol})")
+print(f"Greatest decrease in Profits: {min_diff_month} ({min_diff_dol})")
 
 #Set up print table
 
